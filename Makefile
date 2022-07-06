@@ -5,4 +5,7 @@ build:
 	./gradlew installDist
 check:
 	./gradlew checkstyleMain
+	./gradlew checkstyleTest
+test:
+	./gradlew test
 .PHONY: build

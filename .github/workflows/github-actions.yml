@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: GitHub Actions
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -15,3 +15,13 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          # Set CC_TEST_REPORTER_ID as secret of your repo
+          CC_TEST_REPORTER_ID: ${{secrets.CC_LVL3}}
+          JACOCO_SOURCE_PATH: "${{github.workspace}}/src/main/java"
+        with:
+          # The report file must be there, otherwise Code Climate won't find it
+          coverageCommand: ./gradlew jacocoTestReporter
+          coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
