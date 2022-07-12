@@ -32,7 +32,8 @@ public class Validator {
         return new StringSchema();
     }
     public boolean isValid(String str) {
-//        System.out.println("это Valid из Валидатора");
+        System.out.println("Это метод isValid из Валидатора.");
+        System.out.println("Он создан для наследования");
         return true;
     }
 }
