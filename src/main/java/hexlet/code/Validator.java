@@ -14,6 +14,10 @@ public class Validator {
 
 //    public Validator() {
 //    }
+
+    /**
+     * @return yes if required on
+     */
     public Validator required() {
         this.req = "yes";
         return this;
@@ -32,7 +36,12 @@ public class Validator {
     public final StringSchema string() {
         return new StringSchema();
     }
-    protected boolean isValid(String str) {
-        return true;
+
+    /**
+     * @param str some word for checking
+     * @return true if all terms will be true
+     */
+    public boolean isValid(String str) {
+        return str.equals("word");
     }
 }
