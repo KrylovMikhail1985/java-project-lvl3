@@ -1,22 +1,23 @@
 package hexlet.code;
 
 import hexlet.code.schemas.StringSchema;
+import lombok.Getter;
+
 import java.util.HashSet;
 import java.util.Set;
-
+@Getter
 public class Validator {
+    @Getter
+    private String req = "no";
+    private int min = -1;
+    private Set<String> cont;
 
-    protected boolean req = false;
-    protected int min = -1;
-    protected Set<String> cont;
-
-    public Validator() {
-    }
-    public final  Validator required() {
-        this.req = true;
+//    public Validator() {
+//    }
+    public Validator required() {
+        this.req = "yes";
         return this;
     }
-
     public final Validator minLength(int number) {
         this.min = number;
         return this;
@@ -31,9 +32,7 @@ public class Validator {
     public final StringSchema string() {
         return new StringSchema();
     }
-    public boolean isValid(String str) {
-        System.out.println("Это метод isValid из Валидатора.");
-        System.out.println("Он создан для наследования");
+    protected boolean isValid(String str) {
         return true;
     }
 }
