@@ -1,7 +1,5 @@
 import hexlet.code.Validator;
 import hexlet.code.schemas.StringSchema;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,10 +15,11 @@ public class StringSchemaTest {
         Validator v = new Validator();
         StringSchema schema = v.string();
         boolean expected = true;
+        final int min = 6;
         boolean actual = schema.required()
                 .contains("I")
                 .contains("Love")
-                .minLength(6)
+                .minLength(min)
                 .isValid("I Love you!!!");
         assertEquals(expected, actual);
     }
@@ -29,10 +28,11 @@ public class StringSchemaTest {
         Validator v = new Validator();
         StringSchema schema = v.string();
         boolean expected = false;
+        final int min = 6;
         boolean actual = schema.required()
                 .contains("I")
                 .contains("Hate")
-                .minLength(6)
+                .minLength(min)
                 .isValid("I Love you!!!");
         assertEquals(expected, actual);
     }
@@ -41,10 +41,11 @@ public class StringSchemaTest {
         Validator v = new Validator();
         StringSchema schema = v.string();
         boolean expected = false;
+        final int min = 89;
         boolean actual = schema.required()
                 .contains("I")
                 .contains("Love")
-                .minLength(89)
+                .minLength(min)
                 .isValid("I Love you!!!");
         assertEquals(expected, actual);
     }
@@ -58,7 +59,7 @@ public class StringSchemaTest {
         assertEquals(expected, actual);
     }
     @Test
-    public void stringSchemaTest4_1() {
+    public void stringSchemaTest5() {
         Validator v = new Validator();
         StringSchema schema = v.string();
         boolean expected = false;
@@ -67,7 +68,7 @@ public class StringSchemaTest {
         assertEquals(expected, actual);
     }
     @Test
-    public void stringSchemaTest5() {
+    public void stringSchemaTest6() {
         Validator v = new Validator();
         StringSchema schema = v.string();
         boolean expected = false;
@@ -76,7 +77,7 @@ public class StringSchemaTest {
         assertEquals(expected, actual);
     }
     @Test
-    public void stringSchemaTest6() {
+    public void stringSchemaTest7() {
         Validator v = new Validator();
         StringSchema schema = v.string();
         boolean expected = true;
@@ -84,7 +85,7 @@ public class StringSchemaTest {
         assertEquals(expected, actual);
     }
     @Test
-    public void stringSchemaTest7() {
+    public void stringSchemaTest8() {
         Validator v = new Validator();
         StringSchema schema = v.string();
         boolean expected = false;
@@ -93,11 +94,12 @@ public class StringSchemaTest {
         assertEquals(expected, actual);
     }
     @Test
-    public void stringSchemaTest8() {
+    public void stringSchemaTest9() {
         Validator v = new Validator();
         StringSchema schema = v.string();
+        final int min = 5;
         boolean expected = false;
-        boolean actual = schema.minLength(5)
+        boolean actual = schema.minLength(min)
                 .isValid(null);
         assertEquals(expected, actual);
     }
