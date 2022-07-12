@@ -10,7 +10,6 @@ public class App {
 
         System.out.println(schema.isValid("")); // true
         System.out.println(schema.isValid(null)); // true
-
         System.out.println(schema.contains("fox").isValid("what does the fox say")); // true
         System.out.println(schema.isValid(null)); // false
         schema.required();

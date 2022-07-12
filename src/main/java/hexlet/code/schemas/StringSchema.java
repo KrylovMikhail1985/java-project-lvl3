@@ -17,26 +17,26 @@ public class StringSchema extends Validator {
         return result;
     }
     public final boolean isValidForNull() {
-        if (req) {
+        if (this.getReq().equals("yes")) {
             return false;
-        } else if (min >= 0) {
+        } else if (this.getMin() >= 0) {
             return false;
         } else {
-            return cont == null;
+            return this.getCont() == null;
         }
     }
     public final boolean isValidForString(String str) {
-        if (req && str.length() < 1) {
+        if (this.getReq().equals("yes") && str.length() < 1) {
             return false;
-        } else if (str.length() <= min) {
+        } else if (str.length() <= this.getMin()) {
             return false;
         } else {
-            return cont == null || cont.size() <= 0 || containsWords(str);
+            return this.getCont() == null || this.getCont().size() <= 0 || containsWords(str);
         }
     }
     public final boolean containsWords(String str) {
         String[] array = str.split(" ");
         List<String> listOfWords = Arrays.asList(array);
-        return listOfWords.containsAll(cont);
+        return listOfWords.containsAll(this.getCont());
     }
 }
