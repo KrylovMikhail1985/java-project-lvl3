@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
 import lombok.Getter;
@@ -17,9 +18,7 @@ public class Validator {
     private int min = -1;
     private ArrayList<Integer> array;
     private Set<String> cont;
-
-//    public Validator() {
-//    }
+    private int siz = 0;
 
     /**
      * @return yes if required on
@@ -30,6 +29,10 @@ public class Validator {
     }
     public final Validator minLength(int number) {
         this.min = number;
+        return this;
+    }
+    public final Validator sizeOf(int number) {
+        this.siz = number;
         return this;
     }
     public final Validator contains(String word) {
@@ -61,6 +64,9 @@ public class Validator {
     }
     public final NumberSchema number() {
         return new NumberSchema();
+    }
+    public final MapSchema mapShema() {
+        return new MapSchema();
     }
 
     /**

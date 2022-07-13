@@ -10,6 +10,8 @@ public class BaseSchema extends Validator {
             result = isValidForNull();
         } else if (this instanceof NumberSchema) {
             result = ((NumberSchema) this).isValidForNumber(obj);
+        } else if (this instanceof MapSchema) {
+            result = ((MapSchema) this).isValidForMap(obj);
         } else {
             result = ((StringSchema) this).isValidForString(obj);
         }
@@ -23,6 +25,8 @@ public class BaseSchema extends Validator {
         } else if (this.getCont() != null) {
             return false;
         } else if (this.getPos().equals("yes")) {
+            return false;
+        } else if (this.getSiz() > 0) {
             return false;
         } else {
             return this.getArray() == null;
