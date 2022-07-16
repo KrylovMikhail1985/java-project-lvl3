@@ -27,7 +27,8 @@ public final class MapSchema extends BaseSchema {
         return true;
     }
     public boolean isValidForNull() {
-        return getReq().equals("no") && this.siz == 0;
+        return getReq().equals("no");
+//        return getReq().equals("no") && this.siz == 0;
     }
     public BaseSchema shape(Map<String, BaseSchema> map) {
         this.shape = map;
