@@ -111,7 +111,35 @@ public final class MapSchemaTest {
         Map<String, Object> human = new HashMap<>();
         human.put("name", "Kolya");
         human.put("age", 0);
+        assertFalse(schema.isValid(human));
+    }
+    @Test
+    public void mapSchemaTest14() {
+        schema.shape(schemas);
+        Map<String, Object> human = new HashMap<>();
+        human.put("age", fifty);
+        human.put("sex", "man");
         assertTrue(schema.isValid(human));
     }
+    @Test
+    public void mapSchemaTest15() {
+        schema.sizeof(0);
+        assertTrue(schema.isValid(new HashMap<>()));
+    }
+    @Test
+    public void mapSchemaTest16() {
+        schema.sizeof(1);
+        Map<String, String> data = new HashMap<>();
+        data.put("key1", "value1");
+        assertTrue(schema.isValid(data));
+    }
+    @Test
+    public void mapSchemaTest18() {
+        schema.sizeof(2);
+        Map<String, String> data = new HashMap<>();
+        data.put("key1", "value1");
+        assertFalse(schema.isValid(data));
+        data.put("key2", "value2");
+        assertTrue(schema.isValid(data));
+    }
 }
-

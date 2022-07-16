@@ -74,6 +74,6 @@ public final class NumberSchemaTest {
     @Test
     public void numberSchemaTest11() {
         schema.required();
-        assertTrue(schema.positive().isValid(0));
+        assertFalse(schema.positive().isValid(0));
     }
 }

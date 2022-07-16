@@ -5,7 +5,7 @@ public class NumberSchema extends BaseSchema {
             return false;
         }
         int number = (int) obj;
-        if (this.getPos().equals("yes") && number < 0) {
+        if (this.getPos().equals("yes") && number < 1) {
             return false;
         } else {
             return this.getArray() == null

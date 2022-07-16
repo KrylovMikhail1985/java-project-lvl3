@@ -10,13 +10,12 @@ public final class MapSchema extends BaseSchema {
             Map<Object, Object> map = (Map<Object, Object>) obj;
             return isValidWithShape(map);
         }
-        if (this.getReq().equals("no")) {
-            return true;
-        } else if (!(obj instanceof Map)) {
+        if (this.getReq().equals("yes") && !(obj instanceof Map)) {
             return false;
         }
-        if (this.getSiz() == 0) {
+        if (this.getReq().equals("no") && this.getSiz() == 0 && this.shape == null) {
             return true;
+
         }
         Map<Object, Object> map = (Map<Object, Object>) obj;
         return this.getSiz() <= map.size();

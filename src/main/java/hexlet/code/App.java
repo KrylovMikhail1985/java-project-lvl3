@@ -14,6 +14,13 @@ public class App {
 //
 //        MapSchema schema = v.map();
 //
+//        System.out.println(schema.isValid("data")); // false
+
+
+//        Validator v = new Validator();
+//
+//        MapSchema schema = v.map();
+//
 //        Map<String, BaseSchema> schemas = new HashMap<>();
 //        schemas.put("name", v.string().required());
 //        schemas.put("age", v.number().positive());
