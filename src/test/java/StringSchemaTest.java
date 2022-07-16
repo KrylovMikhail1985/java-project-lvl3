@@ -77,4 +77,10 @@ public final class StringSchemaTest {
         schema.minLength(min);
         assertTrue(schema.minLength(min).isValid("Papan"));
     }
+    @Test
+    public void stringSchemaTest11() {
+        final int min = 5;
+        schema.minLength(min);
+        assertTrue(schema.minLength(min).isValid("I love you!"));
+    }
 }
