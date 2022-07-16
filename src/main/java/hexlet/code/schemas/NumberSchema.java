@@ -1,8 +1,7 @@
 package hexlet.code.schemas;
-
 public class NumberSchema extends BaseSchema {
     public final boolean isValidForNumber(Object obj) {
-        if (obj instanceof String) {
+        if (!(obj instanceof Integer)) {
             return false;
         }
         int number = (int) obj;

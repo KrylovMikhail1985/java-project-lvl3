@@ -2,8 +2,11 @@ package hexlet.code.schemas;
 
 import hexlet.code.Validator;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.stream.Collectors;
+
 public class BaseSchema extends Validator {
-    @Override
     public final boolean isValid(Object obj) {
         boolean result;
         if (obj == null) {
@@ -18,18 +21,57 @@ public class BaseSchema extends Validator {
         return result;
     }
     public final boolean isValidForNull() {
+        boolean result;
         if (this.getReq().equals("yes")) {
-            return false;
+            result = false;
         } else if (this.getMin() >= 0) {
-            return false;
+            result = false;
         } else if (this.getCont() != null) {
-            return false;
-        } else if (this.getPos().equals("yes")) {
-            return false;
+            result = false;
+//        } else if (this.getPos().equals("yes")) {
+//            result = false;
         } else if (this.getSiz() > 0) {
-            return false;
+            result = false;
         } else {
-            return this.getArray() == null;
+            result = this.getArray() == null;
         }
+        return result;
+    }
+    public final BaseSchema required() {
+        setReq("yes");
+        return this;
+    }
+    public final BaseSchema positive() {
+        setPos("yes");
+        return this;
+    }
+    public final BaseSchema contains(String word) {
+        if (getCont() == null) {
+            setCont(new HashSet<>());
+        }
+        getCont().add(word);
+        return this;
+    }
+    public final BaseSchema minLength(int number) {
+        setMin(number);
+        return this;
+    }
+    public final BaseSchema sizeOf(int number) {
+        setSiz(number);
+        return this;
+    }
+    public final BaseSchema range(int number1, int number2) {
+        if (getArray() != null) {
+            getArray().clear();
+        } else {
+            setArray(new ArrayList<>());
+        }
+        getArray().add(number1);
+        getArray().add(number2);
+        ArrayList<Integer> ar = (ArrayList<Integer>) getArray().stream()
+                .sorted()
+                .collect(Collectors.toList());
+        setArray(ar);
+        return this;
     }
 }
