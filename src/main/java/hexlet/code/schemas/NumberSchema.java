@@ -6,8 +6,7 @@ import java.util.stream.Collectors;
 public final class NumberSchema extends BaseSchema {
     private String pos = "no";
     private ArrayList<Integer> range;
-    @Override
-    public boolean isValid(Object obj) {
+    public boolean isValidForNumber(Object obj) {
         if (obj == null) {
             return isValidForNull();
         }
