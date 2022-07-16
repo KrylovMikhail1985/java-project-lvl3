@@ -3,6 +3,7 @@ package hexlet.code;
 
 //import hexlet.code.schemas.BaseSchema;
 //import hexlet.code.schemas.MapSchema;
+//import hexlet.code.schemas.NumberSchema;
 //
 //import java.util.HashMap;
 //import java.util.Map;
@@ -44,10 +45,10 @@ public class App {
 //
 //        System.out.println(schema.isValid(null)); // true
 //
-//        schema.required();
+//        schema.required().positive();
 //
 //        System.out.println(schema.isValid(null)); // false
-//        System.out.println(schema.isValid(10)); // true
+//        System.out.println(schema.isValid(0)); // true
 //        System.out.println(schema.isValid("5")); // false
 //        schema.range(5, -5);
 //
