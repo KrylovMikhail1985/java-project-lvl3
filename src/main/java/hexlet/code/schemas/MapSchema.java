@@ -6,15 +6,15 @@ public final class MapSchema extends BaseSchema {
 
     private Map<String, BaseSchema> shape;
     public boolean isValidForMap(Object obj) {
+        if (this.getReq().equals("no") && this.getSiz() == 0 && this.shape == null) {
+            return true;
+        }
         if (obj instanceof Map && this.shape != null) {
             Map<Object, Object> map = (Map<Object, Object>) obj;
             return isValidWithShape(map);
         }
         if (this.getReq().equals("yes") && !(obj instanceof Map)) {
             return false;
-        }
-        if (this.getReq().equals("no") && this.getSiz() == 0 && this.shape == null) {
-            return true;
         }
         Map<Object, Object> map = (Map<Object, Object>) obj;
         if (this.getSiz() > 0 && this.getSiz() != map.size()) {
