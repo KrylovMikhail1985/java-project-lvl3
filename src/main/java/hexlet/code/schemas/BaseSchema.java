@@ -1,12 +1,21 @@
 package hexlet.code.schemas;
 
-import hexlet.code.Validator;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
-
-public class BaseSchema extends Validator {
+@Getter
+@Setter
+public class BaseSchema {
+    private String req = "no";
+    private String pos = "no";
+    private int min = -1;
+    private ArrayList<Integer> array;
+    private Set<String> cont;
+    private int siz = 0;
     public final boolean isValid(Object obj) {
         boolean result;
         if (obj == null) {
@@ -22,56 +31,54 @@ public class BaseSchema extends Validator {
     }
     public final boolean isValidForNull() {
         boolean result;
-        if (this.getReq().equals("yes")) {
+        if (req.equals("yes")) {
             result = false;
-        } else if (this.getMin() >= 0) {
+        } else if (min > 0) {
             result = false;
-        } else if (this.getCont() != null) {
+        } else if (cont != null) {
             result = false;
-//        } else if (this.getPos().equals("yes")) {
-//            result = false;
-        } else if (this.getSiz() > 0) {
+        } else if (siz > 0) {
             result = false;
         } else {
-            result = this.getArray() == null;
+            result = array == null;
         }
         return result;
     }
     public final BaseSchema required() {
-        setReq("yes");
+        this.req = "yes";
         return this;
     }
     public final BaseSchema positive() {
-        setPos("yes");
+        this.pos = "yes";
         return this;
     }
     public final BaseSchema contains(String word) {
-        if (getCont() == null) {
-            setCont(new HashSet<>());
+        if (cont == null) {
+            this.cont = new HashSet<>();
         }
-        getCont().add(word);
+        cont.add(word);
         return this;
     }
     public final BaseSchema minLength(int number) {
-        setMin(number);
+        this.min = number;
         return this;
     }
     public final BaseSchema sizeof(int number) {
-        setSiz(number);
+        this.siz = number;
         return this;
     }
     public final BaseSchema range(int number1, int number2) {
-        if (getArray() != null) {
-            getArray().clear();
+        if (array != null) {
+            array.clear();
         } else {
-            setArray(new ArrayList<>());
+            this.array = new ArrayList<>();
         }
-        getArray().add(number1);
-        getArray().add(number2);
-        ArrayList<Integer> ar = (ArrayList<Integer>) getArray().stream()
+        array.add(number1);
+        array.add(number2);
+        ArrayList<Integer> ar = (ArrayList<Integer>) array.stream()
                 .sorted()
                 .collect(Collectors.toList());
-        setArray(ar);
+        this.array = ar;
         return this;
     }
 }
