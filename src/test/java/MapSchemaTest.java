@@ -16,6 +16,7 @@ public final class MapSchemaTest {
     private MapSchema schema;
     private Map<String, BaseSchema> schemas;
     private final int fifty = 50;
+    private final int five = 5;
 
     @BeforeEach
     public void beforeEach() {
@@ -81,38 +82,38 @@ public final class MapSchemaTest {
         human.put("age", null);
         assertTrue(schema.isValid(human));
     }
-//    @Test
-//    public void mapSchemaTest10() {
-//        schema.shape(schemas);
-//        Map<String, Object> human = new HashMap<>();
-//        human.put("name", "");
-//        human.put("age", fifty);
-//        assertFalse(schema.isValid(human));
-//    }
-//    @Test
-//    public void mapSchemaTest11() {
-//        schema.shape(schemas);
-//        Map<String, Object> human = new HashMap<>();
-//        human.put("name", "Kolya");
-//        human.put("age", -fifty);
-//        assertFalse(schema.isValid(human));
-//    }
-//    @Test
-//    public void mapSchemaTest12() {
-//        schema.shape(schemas);
-//        Map<String, Object> human = new HashMap<>();
-//        human.put("name", "Kolya");
-//        human.put("age", "88");
-//        assertFalse(schema.isValid(human));
-//    }
-//    @Test
-//    public void mapSchemaTest13() {
-//        schema.shape(schemas);
-//        Map<String, Object> human = new HashMap<>();
-//        human.put("name", "Kolya");
-//        human.put("age", 0);
-//        assertFalse(schema.isValid(human));
-//    }
+    @Test
+    public void mapSchemaTest10() {
+        schema.shape(schemas);
+        Map<String, Object> human = new HashMap<>();
+        human.put("name", "");
+        human.put("age", fifty);
+        assertFalse(schema.isValid(human));
+    }
+    @Test
+    public void mapSchemaTest11() {
+        schema.shape(schemas);
+        Map<String, Object> human = new HashMap<>();
+        human.put("name", "Kolya");
+        human.put("age", -fifty);
+        assertFalse(schema.isValid(human));
+    }
+    @Test
+    public void mapSchemaTest12() {
+        schema.shape(schemas);
+        Map<String, Object> human = new HashMap<>();
+        human.put("name", "Kolya");
+        human.put("age", "88");
+        assertFalse(schema.isValid(human));
+    }
+    @Test
+    public void mapSchemaTest13() {
+        schema.shape(schemas);
+        Map<String, Object> human = new HashMap<>();
+        human.put("name", "Kolya");
+        human.put("age", 0);
+        assertFalse(schema.isValid(human));
+    }
     @Test
     public void mapSchemaTest14() {
         schema.shape(schemas);
@@ -143,5 +144,29 @@ public final class MapSchemaTest {
         assertTrue(schema.isValid(data));
         data.put("key3", "value3");
         assertFalse(schema.isValid(data));
+    }
+    @Test
+    public void mapSchemaTest19() {
+        schema.shape(schemas);
+
+        Map<String, Object> human1 = new HashMap<>();
+        human1.put("name", "Kolya");
+        human1.put("age", fifty);
+        assertTrue(schema.isValid(human1)); // true
+
+        Map<String, Object> human2 = new HashMap<>();
+        human2.put("name", "Maya");
+        human2.put("age", null);
+        assertTrue(schema.isValid(human2)); // true
+
+        Map<String, Object> human3 = new HashMap<>();
+        human3.put("name", "");
+        human3.put("age", null);
+        assertFalse(schema.isValid(human3)); // false
+
+        Map<String, Object> human4 = new HashMap<>();
+        human4.put("name", "Valya");
+        human4.put("age", -five);
+        assertFalse(schema.isValid(human4)); // false
     }
 }

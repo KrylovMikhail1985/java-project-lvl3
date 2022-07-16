@@ -8,7 +8,7 @@ public class StringSchema extends BaseSchema {
         String str = (String) string;
         if (this.getReq().equals("yes") && str.length() < 1) {
             return false;
-        } else if (str.length() <= this.getMin()) {
+        } else if (str.length() < this.getMin()) {
             return false;
         } else {
             return super.getCont() == null || super.getCont().size() <= 0 || containsWords(str);

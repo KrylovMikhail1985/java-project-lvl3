@@ -22,8 +22,8 @@ public class App {
 //        MapSchema schema = v.map();
 //
 //        Map<String, BaseSchema> schemas = new HashMap<>();
-//        schemas.put("name", v.string().required());
-//        schemas.put("age", v.number().positive());
+//        schemas.put("name", v.string().required().minLength(3));
+//        schemas.put("age", v.number().positive().range(5, 160));
 //        schema.shape(schemas);
 //
 //        Map<String, Object> human1 = new HashMap<>();
