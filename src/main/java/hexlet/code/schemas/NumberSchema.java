@@ -6,14 +6,18 @@ import java.util.stream.Collectors;
 public final class NumberSchema extends BaseSchema {
     private String pos = "no";
     private ArrayList<Integer> range;
-    public boolean isValidForNumber(Object obj) {
+    @Override
+    public boolean isValid(Object obj) {
         if (obj == null) {
             return isValidForNull();
         }
-        if (!(obj instanceof Integer)) {
+        if ((getReq().equals("yes") || range != null || this.pos.equals("yes")) && !(obj instanceof Integer)) {
             return false;
         }
-        int number = (int) obj;
+        int number = 0;
+        if (obj instanceof Integer) {
+            number = (int) obj;
+        }
         if (getReq().equals("yes") && number < 0) {
             return false;
         }

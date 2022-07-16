@@ -95,4 +95,8 @@ public final class NumberSchemaTest {
         schema.required();
         assertFalse(schema.isValid(-five));
     }
+    @Test
+    public void numberSchemaTest15() {
+        assertTrue(schema.isValid("99"));
+    }
 }

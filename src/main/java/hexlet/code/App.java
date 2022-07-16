@@ -1,12 +1,12 @@
 package hexlet.code;
 
 
-//import hexlet.code.schemas.BaseSchema;
-//import hexlet.code.schemas.MapSchema;
-//import hexlet.code.schemas.NumberSchema;
-//
-//import java.util.HashMap;
-//import java.util.Map;
+import hexlet.code.schemas.BaseSchema;
+import hexlet.code.schemas.MapSchema;
+import hexlet.code.schemas.NumberSchema;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
@@ -63,15 +63,16 @@ public class App {
 //        human4.put("age", -5);
 //        System.out.println(schema.isValid(human4)); // false
 
-//        Validator v = new Validator();
-//
-//        NumberSchema schema = v.number();
-//
-//        System.out.println(schema.isValid(null)); // true
-//
-//        schema.required().positive();
-//
-//        System.out.println(schema.isValid(null)); // false
+        Validator v = new Validator();
+
+        NumberSchema schema = v.number();
+
+        System.out.println(schema.isValid(null)); // true
+        System.out.println(schema.isValid("string")); // true
+        schema.required();
+
+        System.out.println(schema.isValid(null)); // false
+        System.out.println(schema.isValid("string")); // false
 //        System.out.println(schema.isValid(0)); // true
 //        System.out.println(schema.isValid("5")); // false
 //        schema.range(5, -5);

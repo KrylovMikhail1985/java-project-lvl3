@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 public class BaseSchema {
     private String req = "no";
-    public final boolean isValid(Object obj) {
+    public boolean isValid(Object obj) {
         boolean result;
-        if (this instanceof NumberSchema) {
-            result = ((NumberSchema) this).isValidForNumber(obj);
-        } else if (this instanceof MapSchema) {
+//        if (this instanceof NumberSchema) {
+//            result = ((NumberSchema) this).isValidForNumber(obj);
+        if (this instanceof MapSchema) {
             result = ((MapSchema) this).isValidForMap(obj);
         } else {
             result = ((StringSchema) this).isValidForString(obj);
