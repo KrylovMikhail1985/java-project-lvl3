@@ -63,8 +63,13 @@ public final class NumberSchemaTest {
     }
     @Test
     public void numberSchemaTest9() {
-        schema.required().range(-eight, five);
+        schema.range(-eight, five);
         assertTrue(schema.isValid(fore));
+        assertTrue(schema.isValid(five));
+        assertTrue(schema.isValid(-eight));
+        assertTrue(schema.isValid(0));
+        assertFalse(schema.isValid(-ten));
+        assertFalse(schema.isValid(ten));
     }
     @Test
     public void numberSchemaTest10() {
@@ -78,11 +83,15 @@ public final class NumberSchemaTest {
     }
     @Test
     public void numberSchemaTest12() {
+        assertFalse(schema.positive().isValid(0));
+    }
+    @Test
+    public void numberSchemaTest13() {
         schema.required();
         assertTrue(schema.isValid(0));
     }
     @Test
-    public void numberSchemaTest13() {
+    public void numberSchemaTest14() {
         schema.required();
         assertFalse(schema.isValid(-five));
     }

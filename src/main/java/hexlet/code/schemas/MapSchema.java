@@ -3,10 +3,14 @@ package hexlet.code.schemas;
 import java.util.Map;
 
 public final class MapSchema extends BaseSchema {
+    private int siz;
 
     private Map<String, BaseSchema> shape;
     public boolean isValidForMap(Object obj) {
-        if (this.getReq().equals("no") && this.getSiz() == 0 && this.shape == null) {
+        if (obj == null) {
+            return isValidForNull();
+        }
+        if (this.getReq().equals("no") && this.siz == 0 && this.shape == null) {
             return true;
         }
         if (obj instanceof Map && this.shape != null) {
@@ -17,10 +21,13 @@ public final class MapSchema extends BaseSchema {
             return false;
         }
         Map<Object, Object> map = (Map<Object, Object>) obj;
-        if (this.getSiz() > 0 && this.getSiz() != map.size()) {
+        if (this.siz > 0 && this.siz != map.size()) {
             return false;
         }
         return true;
+    }
+    public boolean isValidForNull() {
+        return getReq().equals("no") && this.siz == 0;
     }
     public BaseSchema shape(Map<String, BaseSchema> map) {
         this.shape = map;
@@ -38,5 +45,14 @@ public final class MapSchema extends BaseSchema {
             }
         }
         return true;
+    }
+    public MapSchema sizeof(int number) {
+        this.siz = number;
+        return this;
+    }
+    @Override
+    public MapSchema required() {
+        setReq("yes");
+        return this;
     }
 }

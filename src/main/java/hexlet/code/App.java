@@ -11,6 +11,23 @@ package hexlet.code;
 public class App {
     public static void main(String[] args) {
 //        Validator v = new Validator();
+//        MapSchema schema = v.map();
+//        Map<String, BaseSchema> schemas = new HashMap<>();
+//        schemas.put("name", v.string().required().minLength(2).contains("as"));
+//        schemas.put("age", v.number().required().positive().range(2, 8));
+//        schemas.put("map", v.map().required().sizeof(1));
+//
+//        schema.shape(schemas);
+//
+//        Map<String, String> data = new HashMap<>();
+//        data.put("key1", "value1");
+//
+//        Map<String, Object> human1 = new HashMap<>();
+//        human1.put("name", "as");
+//        human1.put("age", 8);
+//        human1.put("map", data);
+//        System.out.println(schema.isValid(human1)); // true
+//        Validator v = new Validator();
 //
 //        MapSchema schema = v.map();
 //

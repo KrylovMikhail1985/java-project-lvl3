@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -199,5 +200,17 @@ public final class MapSchemaTest {
 //        human2.put("name", "Maya");
 //        human2.put("age", 0);
 //        assertTrue(schema.isValid(human2)); // true
+    }
+    @Test
+    public void mapSchemaTest22() {
+        Map<String, String> data1 = new HashMap<>();
+        Map<String, String> data2 = new LinkedHashMap<>();
+        assertTrue(schema.isValid(data1));
+        assertTrue(schema.isValid(data2));
+        assertTrue(schema.isValid("ppp"));
+        schema.required();
+        assertTrue(schema.isValid(data1));
+        assertTrue(schema.isValid(data2));
+        assertFalse(schema.isValid("ppp"));
     }
 }

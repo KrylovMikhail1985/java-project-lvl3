@@ -1,6 +1,15 @@
 package hexlet.code.schemas;
-public class NumberSchema extends BaseSchema {
-    public final boolean isValidForNumber(Object obj) {
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+public final class NumberSchema extends BaseSchema {
+    private String pos = "no";
+    private ArrayList<Integer> range;
+    public boolean isValidForNumber(Object obj) {
+        if (obj == null) {
+            return isValidForNull();
+        }
         if (!(obj instanceof Integer)) {
             return false;
         }
@@ -8,11 +17,37 @@ public class NumberSchema extends BaseSchema {
         if (getReq().equals("yes") && number < 0) {
             return false;
         }
-        if (this.getPos().equals("yes") && number < 1) {
+        if (this.pos.equals("yes") && number < 1) {
             return false;
         } else {
-            return this.getArray() == null
-                    || (this.getArray().get(0) <= number && this.getArray().get(1) >= number);
+            return this.range == null
+                    || (this.range.get(0) <= number && this.range.get(1) >= number);
         }
+    }
+    public boolean isValidForNull() {
+        return getReq().equals("no") && this.range == null;
+    }
+    public NumberSchema positive() {
+        this.pos = "yes";
+        return this;
+    }
+    @Override
+    public NumberSchema required() {
+        setReq("yes");
+        return this;
+    }
+    public NumberSchema range(int number1, int number2) {
+        if (range != null) {
+            range.clear();
+        } else {
+            this.range = new ArrayList<>();
+        }
+        range.add(number1);
+        range.add(number2);
+        ArrayList<Integer> ar = (ArrayList<Integer>) range.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        this.range = ar;
+        return this;
     }
 }
