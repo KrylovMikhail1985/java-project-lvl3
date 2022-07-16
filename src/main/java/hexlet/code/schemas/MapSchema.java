@@ -15,10 +15,12 @@ public final class MapSchema extends BaseSchema {
         }
         if (this.getReq().equals("no") && this.getSiz() == 0 && this.shape == null) {
             return true;
-
         }
         Map<Object, Object> map = (Map<Object, Object>) obj;
-        return this.getSiz() <= map.size();
+        if (this.getSiz() > 0 && this.getSiz() != map.size()) {
+            return false;
+        }
+        return true;
     }
     public BaseSchema shape(Map<String, BaseSchema> map) {
         this.shape = map;

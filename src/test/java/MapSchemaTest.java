@@ -141,5 +141,7 @@ public final class MapSchemaTest {
         assertFalse(schema.isValid(data));
         data.put("key2", "value2");
         assertTrue(schema.isValid(data));
+        data.put("key3", "value3");
+        assertFalse(schema.isValid(data));
     }
 }
