@@ -56,7 +56,7 @@ public class BaseSchema extends Validator {
         setMin(number);
         return this;
     }
-    public final BaseSchema sizeOf(int number) {
+    public final BaseSchema sizeof(int number) {
         setSiz(number);
         return this;
     }

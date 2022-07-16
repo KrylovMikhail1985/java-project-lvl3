@@ -49,7 +49,7 @@ public final class MapSchemaTest {
     }
     @Test
     public void stringSchemaTest5() {
-        schema.required().sizeOf(2);
+        schema.required().sizeof(2);
         Map<String, String> data = new HashMap<>();
         data.put("key1", "value1");
         assertFalse(schema.isValid(data));
