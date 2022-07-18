@@ -4,6 +4,7 @@ package hexlet.code;
 //import hexlet.code.schemas.BaseSchema;
 //import hexlet.code.schemas.MapSchema;
 //import hexlet.code.schemas.NumberSchema;
+//import hexlet.code.schemas.StringSchema;
 //
 //import java.util.HashMap;
 //import java.util.Map;
@@ -12,10 +13,17 @@ public class App {
     public static void main(String[] args) {
 //        Validator v = new Validator();
 //        MapSchema schema = v.map();
+//        System.out.println(schema.isValid("human1")); // true
+//        System.out.println(schema.isValid(null)); // true
+//        System.out.println(schema.isValid(99)); // true
+//        System.out.println("======================="); // true
 //        Map<String, BaseSchema> schemas = new HashMap<>();
 //        schemas.put("name", v.string().required().minLength(2).contains("as"));
 //        schemas.put("age", v.number().required().positive().range(2, 8));
 //        schemas.put("map", v.map().required().sizeof(1));
+//        schemas.put("name", v.string().required());
+//        schemas.put("age", v.number());
+//        schemas.put("map", v.map().required());
 //
 //        schema.shape(schemas);
 //
@@ -23,10 +31,19 @@ public class App {
 //        data.put("key1", "value1");
 //
 //        Map<String, Object> human1 = new HashMap<>();
-//        human1.put("name", "as");
-//        human1.put("age", 8);
-//        human1.put("map", data);
+//        human1.put("name", "");
+//        human1.put("age", "8");
+//        human1.put("map", "data");
 //        System.out.println(schema.isValid(human1)); // true
+//        System.out.println("======================="); // true
+//
+//        Map<String, Object> human2 = new HashMap<>();
+//        human2.put("name", "null");
+//        System.out.println(schema.isValid(human2)); // true
+//        human2.put("age", null);
+//        System.out.println(schema.isValid(human2)); // true
+//        human2.put("map", null);
+//        System.out.println(schema.isValid(human2)); // true
 //        Validator v = new Validator();
 //
 //        MapSchema schema = v.map();
@@ -63,17 +80,17 @@ public class App {
 //        human4.put("age", -5);
 //        System.out.println(schema.isValid(human4)); // false
 //
-//        Validator v = new Validator();
+//        System.out.println("=======================");
 //
-//        NumberSchema schema = v.number();
+//        NumberSchema schem = v.number();
 //
-//        System.out.println(schema.isValid(null)); // true
-//        System.out.println(schema.isValid("string")); // true
-//        schema.required();
+//        System.out.println(schem.isValid(null)); // true
+//        System.out.println(schem.isValid("string")); // true
+//        schem.required();
 //
-//        System.out.println(schema.isValid(null)); // false
-//        System.out.println(schema.isValid("string")); // false
-//        System.out.println(schema.isValid(0)); // true
+//        System.out.println(schem.isValid(null)); // false
+//        System.out.println(schem.isValid("string")); // false
+//        System.out.println(schem.isValid(0)); // true
 //        System.out.println(schema.isValid("5")); // false
 //        schema.range(5, -5);
 //
@@ -88,8 +105,9 @@ public class App {
 //        System.out.println(schema.isValid("")); // true
 //        System.out.println(schema.isValid(null)); // true
 //
-//        System.out.println(schema.contains("hexlet").isValid("what does the fox say")); // false
 //        System.out.println(schema.contains("fox").isValid("what does the fox say")); // true
+//        System.out.println(schema.contains("hexlet").isValid("what does the fox say")); // false
+//        System.out.println(schema.contains("what").isValid("what does the fox say")); // true
 //        System.out.println(schema.isValid(null)); // false
 //        schema.required();
 //

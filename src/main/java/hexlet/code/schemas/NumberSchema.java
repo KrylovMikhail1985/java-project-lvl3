@@ -7,25 +7,26 @@ public final class NumberSchema extends BaseSchema {
     private String pos = "no";
     private ArrayList<Integer> range;
     public boolean isValidForNumber(Object obj) {
+        boolean result = true;
         if (obj == null) {
             return isValidForNull();
         }
         if ((getReq().equals("yes") || range != null || this.pos.equals("yes")) && !(obj instanceof Integer)) {
-            return false;
+            result = false;
         }
         int number = 0;
         if (obj instanceof Integer) {
             number = (int) obj;
         }
-        if (getReq().equals("yes") && number < 0) {
-            return false;
+        if (result && getReq().equals("yes") && number < 0) {
+            result = false;
         }
-        if (this.pos.equals("yes") && number < 1) {
-            return false;
-        } else {
-            return this.range == null
-                    || (this.range.get(0) <= number && this.range.get(1) >= number);
+        if (result && this.pos.equals("yes") && number < 1) {
+            result = false;
+        } else  if (result) {
+            result = (this.range == null) || (this.range.get(0) <= number && this.range.get(1) >= number);
         }
+        return result;
     }
     public boolean isValidForNull() {
         return getReq().equals("no") && this.range == null;

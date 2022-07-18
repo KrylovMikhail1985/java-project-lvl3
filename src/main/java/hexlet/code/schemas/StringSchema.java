@@ -1,8 +1,6 @@
 package hexlet.code.schemas;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public final class StringSchema extends BaseSchema {
@@ -25,9 +23,12 @@ public final class StringSchema extends BaseSchema {
         return getReq().equals("no") && this.min == -1 && cont == null;
     }
     public boolean containsWords(String str) {
-        String[] array = str.split(" ");
-        List<String> listOfWords = Arrays.asList(array);
-        return listOfWords.containsAll(this.cont);
+        for (String word: this.cont) {
+            if (!str.contains(word)) {
+                return false;
+            }
+        }
+        return true;
     }
     @Override
     public StringSchema required() {

@@ -4,7 +4,6 @@ import java.util.Map;
 
 public final class MapSchema extends BaseSchema {
     private int siz;
-
     private Map<String, BaseSchema> shape;
     public boolean isValidForMap(Object obj) {
         if (obj == null) {
@@ -16,7 +15,6 @@ public final class MapSchema extends BaseSchema {
         if (this.getReq().equals("yes") && !(obj instanceof Map)) {
             return false;
         }
-
         if (obj instanceof Map && this.shape != null) {
             Map<Object, Object> map = (Map<Object, Object>) obj;
             return isValidWithShape(map);
@@ -29,7 +27,6 @@ public final class MapSchema extends BaseSchema {
     }
     public boolean isValidForNull() {
         return getReq().equals("no");
-//        return getReq().equals("no") && this.siz == 0;
     }
     public BaseSchema shape(Map<String, BaseSchema> map) {
         this.shape = map;

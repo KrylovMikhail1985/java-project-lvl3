@@ -83,4 +83,8 @@ public final class StringSchemaTest {
         schema.minLength(min);
         assertTrue(schema.minLength(min).isValid("I love you!"));
     }
+    @Test
+    public void stringSchemaTest12() {
+        assertTrue(schema.contains("ve").isValid("I love you!"));
+    }
 }
