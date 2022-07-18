@@ -185,23 +185,6 @@ public final class MapSchemaTest {
         assertFalse(schema.isValid(human2)); // true
     }
     @Test
-    public void mapSchemaTest21() {
-        schemas = new HashMap<>();
-        schemas.put("name", v.string().minLength(2));
-        schemas.put("age", v.number().positive());
-        schema.shape(schemas);
-
-        Map<String, Object> human1 = new HashMap<>();
-        human1.put("name", "Kolya");
-        human1.put("age", fifty);
-        assertTrue(schema.isValid(human1)); // true
-
-//        Map<String, Object> human2 = new HashMap<>();
-//        human2.put("name", "Maya");
-//        human2.put("age", 0);
-//        assertTrue(schema.isValid(human2)); // true
-    }
-    @Test
     public void mapSchemaTest22() {
         Map<String, String> data1 = new HashMap<>();
         Map<String, String> data2 = new LinkedHashMap<>();
