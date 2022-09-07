@@ -1,49 +1,58 @@
 package hexlet.code;
 
 
-//import hexlet.code.schemas.BaseSchema;
-//import hexlet.code.schemas.MapSchema;
+import hexlet.code.schemas.BaseSchema;
+import hexlet.code.schemas.MapSchema;
 //import hexlet.code.schemas.NumberSchema;
 //import hexlet.code.schemas.StringSchema;
 //
-//import java.util.HashMap;
-//import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
-//        Validator v = new Validator();
-//        MapSchema schema = v.map();
-//        System.out.println(schema.isValid("human1")); // true
-//        System.out.println(schema.isValid(null)); // true
-//        System.out.println(schema.isValid(99)); // true
-//        System.out.println("======================="); // true
-//        Map<String, BaseSchema> schemas = new HashMap<>();
-//        schemas.put("name", v.string().required().minLength(2).contains("as"));
-//        schemas.put("age", v.number().required().positive().range(2, 8));
-//        schemas.put("map", v.map().required().sizeof(1));
+        Validator v = new Validator();
+        MapSchema schema = v.map();
+        System.out.println(schema.isValid("human1")); // true
+        System.out.println(schema.isValid(null)); // true
+        final int number = 99;
+        System.out.println(schema.isValid(number)); // true
+        System.out.println("=======================");
+
+        final int minLength = 2;
+        final int maxLength = 8;
+        final int size = 1;
+
+
+        Map<String, BaseSchema> schemas = new HashMap<>();
+        schemas.put("name", v.string().required().minLength(minLength).contains("as"));
+        schemas.put("age", v.number().required().positive().range(minLength, maxLength));
+        schemas.put("map", v.map().required().sizeof(size));
 //        schemas.put("name", v.string().required());
 //        schemas.put("age", v.number());
 //        schemas.put("map", v.map().required());
-//
-//        schema.shape(schemas);
-//
-//        Map<String, String> data = new HashMap<>();
-//        data.put("key1", "value1");
-//
-//        Map<String, Object> human1 = new HashMap<>();
-//        human1.put("name", "");
-//        human1.put("age", "8");
-//        human1.put("map", "data");
-//        System.out.println(schema.isValid(human1)); // true
-//        System.out.println("======================="); // true
-//
-//        Map<String, Object> human2 = new HashMap<>();
-//        human2.put("name", "null");
-//        System.out.println(schema.isValid(human2)); // true
-//        human2.put("age", null);
-//        System.out.println(schema.isValid(human2)); // true
-//        human2.put("map", null);
-//        System.out.println(schema.isValid(human2)); // true
+
+        schema.shape(schemas);
+
+        Map<String, String> data = new HashMap<>();
+        data.put("key1", "value1");
+
+        Map<String, Object> human1 = new HashMap<>();
+        human1.put("name", "Haska");
+        final int age = 6;
+        human1.put("age", age);
+        human1.put("map", data);
+        System.out.println(schema.isValid(human1)); // true
+        System.out.println("=======================");
+
+        Map<String, Object> human2 = new HashMap<>();
+        human2.put("name", "null");
+        System.out.println(schema.isValid(human2)); // false
+        human2.put("age", null);
+        System.out.println(schema.isValid(human2)); // false
+        human2.put("map", null);
+        System.out.println(schema.isValid(human2)); // false
+
 //        Validator v = new Validator();
 //
 //        MapSchema schema = v.map();
